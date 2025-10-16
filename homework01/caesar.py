@@ -10,38 +10,38 @@ def encrypt_caesar(plaintext: str, shift: int = 3) -> str:
     >>> encrypt_caesar("")
     ''
     """
-    low="abcdefghijklmnopqrstuvwxyz"
-    up=low.upper()
+    low = "abcdefghijklmnopqrstuvwxyz"
+    up = low.upper()
     ciphertext = ""
-    if shift==0:
+    if shift == 0:
         return plaintext
     for c in plaintext:
         if c.isdigit():
-            ciphertext+=c
+            ciphertext += c
             continue
         if c.isspace():
-            ciphertext+=c
+            ciphertext += c
             continue
         if c.isalpha():
             if c.isupper():
-                if (up.find(c) + shift)>=len(up):
-                    a=up.find(c)+shift-len(up)
+                if (up.find(c) + shift) >= len(up):
+                    a = up.find(c) + shift - len(up)
                 else:
-                    a=up.find(c)+shift
-                b=up[a]
+                    a = up.find(c) + shift
+                b = up[a]
             else:
-                if (low.find(c) + shift)>=len(up):
-                    a=low.find(c)+shift-len(up)
+                if (low.find(c) + shift) >= len(up):
+                    a = low.find(c) + shift - len(up)
                 else:
-                    a=low.find(c)+shift
-                b=low[a]
+                    a = low.find(c) + shift
+                b = low[a]
 
-            ciphertext+=b
+            ciphertext += b
 
-            #a=ord(c)+shift
-            #ciphertext+=chr(a)
+            # a=ord(c)+shift
+            # ciphertext+=chr(a)
             continue
-        ciphertext+=c
+        ciphertext += c
     return ciphertext
 
 
@@ -58,44 +58,41 @@ def decrypt_caesar(ciphertext: str, shift: int = 3) -> str:
     ''
     """
 
-    low="abcdefghijklmnopqrstuvwxyz"
-    up=low.upper()
+    low = "abcdefghijklmnopqrstuvwxyz"
+    up = low.upper()
     plaintext = ""
-    if shift==0:
+    if shift == 0:
         return ciphertext
     for c in ciphertext:
         if c.isdigit():
-            plaintext+=c
+            plaintext += c
             continue
         if c.isspace():
-            plaintext+=c
+            plaintext += c
             continue
         if c.isalpha():
             if c.isupper():
-                if (up.find(c) - shift)<0:
-                    a=up.find(c)-shift+len(up)
+                if (up.find(c) - shift) < 0:
+                    a = up.find(c) - shift + len(up)
                 else:
-                    a=up.find(c)-shift
-                b=up[a]
+                    a = up.find(c) - shift
+                b = up[a]
             else:
-                if (low.find(c) - shift)<0:
-                    a=low.find(c)-shift+len(up)
+                if (low.find(c) - shift) < 0:
+                    a = low.find(c) - shift + len(up)
                 else:
-                    a=low.find(c)-shift
-                b=low[a]
+                    a = low.find(c) - shift
+                b = low[a]
 
-            plaintext+=b
+            plaintext += b
 
-            #a=ord(c)+shift
-            #ciphertext+=chr(a)
+            # a=ord(c)+shift
+            # ciphertext+=chr(a)
             continue
-        plaintext+=c
-    
+        plaintext += c
 
     return plaintext
 
 
-
-
-print(encrypt_caesar("Python3.6",3))
-print(decrypt_caesar("Sbwkrq3.6",3))
+print(encrypt_caesar("Python3.6", 3))
+print(decrypt_caesar("Sbwkrq3.6", 3))

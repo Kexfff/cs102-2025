@@ -51,24 +51,21 @@ def multiplicative_inverse(e: int, phi: int) -> int:
 
     if phi == 1:
         return 0
-    
+
     original_phi = phi
-    
+
     x = 0
     y = 1
-    
 
     while e > 1:
         q = e // phi
         e, phi = phi, e % phi
         x, y = y - q * x, x
-    
+
     if y < 0:
         y += original_phi
-    
-    return y
-    
 
+    return y
 
     pass
 
@@ -81,11 +78,11 @@ def generate_keypair(p: int, q: int) -> tp.Tuple[tp.Tuple[int, int], tp.Tuple[in
 
     # n = pq
     # PUT YOUR CODE HERE
-    n=p*q
+    n = p * q
 
     # phi = (p-1)(q-1)
     # PUT YOUR CODE HERE
-    phi=(p-1)*(q-1)
+    phi = (p - 1) * (q - 1)
 
     # Choose an integer e such that e and phi(n) are coprime
     e = random.randrange(1, phi)
@@ -118,7 +115,7 @@ def decrypt(pk: tp.Tuple[int, int], ciphertext: tp.List[int]) -> str:
     # Unpack the key into its components
     key, n = pk
     # Generate the plaintext based on the ciphertext and key using a^b mod m
-    plain = [chr((char ** key) % n) for char in ciphertext]
+    plain = [chr((char**key) % n) for char in ciphertext]
     # Return the array of bytes as a string
     return "".join(plain)
 
