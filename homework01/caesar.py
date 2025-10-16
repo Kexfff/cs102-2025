@@ -24,13 +24,13 @@ def encrypt_caesar(plaintext: str, shift: int = 3) -> str:
             continue
         if c.isalpha():
             if c.isupper():
-                if (up.find(c) + shift)>len(up):
+                if (up.find(c) + shift)>=len(up):
                     a=up.find(c)+shift-len(up)
                 else:
                     a=up.find(c)+shift
                 b=up[a]
             else:
-                if (low.find(c) + shift)>len(up):
+                if (low.find(c) + shift)>=len(up):
                     a=low.find(c)+shift-len(up)
                 else:
                     a=low.find(c)+shift
