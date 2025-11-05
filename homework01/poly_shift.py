@@ -1,8 +1,7 @@
 def encrypt_poly_shift(plaintext, odd_shift, even_shift):
-    # Русский алфавит с 'ё'
     lower_alphabet = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя'
     upper_alphabet = lower_alphabet.upper()
-    n = len(lower_alphabet)  # 33
+    n = len(lower_alphabet)
 
     result = []
     for i, char in enumerate(plaintext):
@@ -11,14 +10,11 @@ def encrypt_poly_shift(plaintext, odd_shift, even_shift):
         elif char in upper_alphabet:
             alphabet = upper_alphabet
         else:
-            # Не буква — оставляем как есть
             result.append(char)
             continue
 
-        # Выбираем сдвиг в зависимости от чётности индекса
         shift = even_shift if i % 2 == 0 else odd_shift
 
-        # Находим текущую позицию и применяем сдвиг с модулем
         old_index = alphabet.index(char)
         new_index = (old_index + shift) % n
         result.append(alphabet[new_index])
