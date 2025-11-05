@@ -1,5 +1,5 @@
 def encrypt_poly_shift(plaintext, odd_shift, even_shift):
-    lower_alphabet = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя'
+    lower_alphabet = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя"
     upper_alphabet = lower_alphabet.upper()
     n = len(lower_alphabet)
 
@@ -19,6 +19,7 @@ def encrypt_poly_shift(plaintext, odd_shift, even_shift):
         new_index = (old_index + shift) % n
         result.append(alphabet[new_index])
 
-    return ''.join(result)
+    return "".join(result)
 
-print(encrypt_poly_shift("Привет, мир!",1,2))
+
+print(encrypt_poly_shift("Привет, мир!", 1, 2))
