@@ -142,7 +142,7 @@ def shortest_path(
         return results
 
     path = []
-    cur_value = grid[exit_coord[0]][exit_coord[1]]
+    cur_value = int(grid[exit_coord[0]][exit_coord[1]])
     cur_coord = exit_coord
     path.append(exit_coord)
     while cur_value != 1:
@@ -151,11 +151,11 @@ def shortest_path(
             grid[cur_coord[0]][cur_coord[1]] = " "
             path.pop()
             cur_coord = path[-1]
-            cur_value = grid[cur_coord[0]][cur_coord[1]]
+            cur_value = int(grid[cur_coord[0]][cur_coord[1]])
         else:
             path.append(indices[0])
             cur_coord = indices[0]
-            cur_value = grid[cur_coord[0]][cur_coord[1]]
+            cur_value = int(grid[cur_coord[0]][cur_coord[1]])
     return path
 
 
