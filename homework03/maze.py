@@ -16,11 +16,33 @@ def remove_wall(grid: List[List[Union[str, int]]], coord: Tuple[int, int]) -> Li
     :param coord:
     :return:
     """
-
-    row = coord[0]
-    col = coord[1] + 1
+    x, y = coord
     new_grid = deepcopy(grid)
-    new_grid[row][col] = " "
+
+    possible_directions = []
+    if x > 1 and new_grid[x - 1][y] == "■":
+        possible_directions.append("up")
+    if y < len(new_grid[0]) - 2 and new_grid[x][y + 1] == "■":
+        possible_directions.append("right")
+    if x < len(new_grid) - 2 and new_grid[x + 1][y] == "■":
+        possible_directions.append("down")
+    if y > 1 and new_grid[x][y - 1] == "■":
+        possible_directions.append("left")
+
+    if not possible_directions:
+        return new_grid
+
+    direction = choice(possible_directions)
+
+    if direction == "up":
+        new_grid[x - 1][y] = " "
+    elif direction == "right":
+        new_grid[x][y + 1] = " "
+    elif direction == "down":
+        new_grid[x + 1][y] = " "
+    elif direction == "left":
+        new_grid[x][y - 1] = " "
+
     return new_grid
 
 
