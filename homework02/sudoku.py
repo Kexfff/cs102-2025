@@ -53,10 +53,7 @@ def get_row(grid: tp.List[tp.List[str]], pos: tp.Tuple[int, int]) -> tp.List[str
     >>> get_row([['1', '2', '3'], ['4', '5', '6'], ['.', '8', '9']], (2, 0))
     ['.', '8', '9']
     """
-    res = []
-    for i in grid[pos[0]]:
-        res.append(i)
-    return res
+    return grid[pos[0]]
 
 
 def get_col(grid: tp.List[tp.List[str]], pos: tp.Tuple[int, int]) -> tp.List[str]:
@@ -173,11 +170,11 @@ def check_solution(solution: tp.List[tp.List[str]]) -> bool:
 
     for block_row in range(3):
         for block_col in range(3):
-            block = [
+            block = (
                 solution[r][c]
                 for r in range(block_row * 3, block_row * 3 + 3)
                 for c in range(block_col * 3, block_col * 3 + 3)
-            ]
+            )
             if not is_valid_unit(block):
                 return False
 
@@ -205,7 +202,7 @@ def generate_sudoku(N: int) -> tp.List[tp.List[str]]:
     >>> check_solution(solution)
     True
     """
-    empty_grid = [["." for _ in range(9)] for _ in range(9)]
+    empty_grid = [["."] * 9 for _ in range(9)]
     if N == 0:
         return empty_grid
 
@@ -214,14 +211,10 @@ def generate_sudoku(N: int) -> tp.List[tp.List[str]]:
         return empty_grid
     grid = [row[:] for row in solution_grid]
     cells_to_remove = 81 - N
-    if cells_to_remove <= 0:
-        return grid
-    if cells_to_remove >= 81:
+    if cells_to_remove <= 0 or cells_to_remove >= 81:
         return empty_grid
-    positions = [(i, j) for i in range(9) for j in range(9)]
-    random.shuffle(positions)
-    for i in range(cells_to_remove):
-        row, col = positions[i]
+    positions = random.sample([(i, j) for i in range(9) for j in range(9)], cells_to_remove)
+    for row, col in positions:
         grid[row][col] = "."
 
     return grid
